@@ -54,7 +54,6 @@ type
   TJToast = class(TJavaGenericImport<JToastClass, JToast>)
   end;
 
-
 procedure Toast(const Msg: string; duration: TToastLength = ShortToast);
 
 {$ENDIF}
@@ -64,6 +63,7 @@ implementation
 {$IFDEF ANDROID}
 
 uses
+  Androidapi.Helpers,
   FMX.Helpers.Android;
 
 procedure Toast(const Msg: string; duration: TToastLength);

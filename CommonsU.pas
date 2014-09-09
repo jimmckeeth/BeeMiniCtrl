@@ -24,7 +24,7 @@ uses
   Cromis.Multitouch.Custom, Androidapi.JNI.JavaTypes;
 
 const
-  MACCAR1 = '00:13:EF:A0:41:B9'; // daniele teti
+  MACCAR1 = '00:13:EF:D6:67:0D'; // daniele teti
   MACCAR2 = '00:24:94:D0:24:62'; // daniele spinetti
 
 type
@@ -39,7 +39,8 @@ function DoConnect(MACAddress: String; out istream: JInputstream;
 implementation
 
 uses
-  Androidapi.JNI.BluetoothAdapter, Android.JNI.Toast, System.SysUtils;
+  Androidapi.Helpers, Androidapi.JNI.BluetoothAdapter, Android.JNI.Toast,
+  System.SysUtils;
 
 function DoConnect(MACAddress: String; out istream: JInputstream;
   out ostream: JOutputStream): Boolean;

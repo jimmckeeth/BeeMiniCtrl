@@ -9,6 +9,7 @@ interface
 {$IF defined(Android)}
 
 uses
+  Androidapi.Helpers,
   Androidapi.JNIBridge,
   Androidapi.JNI.JavaTypes,
   Classes;
@@ -35,7 +36,8 @@ type
     function getRemoteDevice: JBluetoothDevice; cdecl;
   end;
 
-  TJBluetoothSocket = class(TJavaGenericImport<JBluetoothSocketClass, JBluetoothSocket>)
+  TJBluetoothSocket = class(TJavaGenericImport<JBluetoothSocketClass,
+    JBluetoothSocket>)
   end;
 
   /// //////////////////////// BluetoothDevice //////////////////////////////////
@@ -48,13 +50,16 @@ type
   JBluetoothDevice = interface(JObject)
     ['{F2560E3D-D26E-4DD8-B384-43070B02FF04}']
     // createRfcommSocketToServiceRecord(Ljava/util/UUID;)Landroid/bluetooth/BluetoothSocket;
-    function createInsecureRfcommSocketToServiceRecord(UUID: JUUID): JBluetoothSocket; cdecl;
-    function createRfcommSocketToServiceRecord(UUID: JUUID): JBluetoothSocket; cdecl;
+    function createInsecureRfcommSocketToServiceRecord(UUID: JUUID)
+      : JBluetoothSocket; cdecl;
+    function createRfcommSocketToServiceRecord(UUID: JUUID)
+      : JBluetoothSocket; cdecl;
     function getName: JString; cdecl;
     function getAddress: JString; cdecl;
   end;
 
-  TJBluetoothDevice = class(TJavaGenericImport<JBluetoothDeviceClass, JBluetoothDevice>)
+  TJBluetoothDevice = class(TJavaGenericImport<JBluetoothDeviceClass,
+    JBluetoothDevice>)
   end;
 
   /// //////////////////////// BluetoothAdapter /////////////////////////////////
@@ -74,12 +79,14 @@ type
     function disable: Boolean; cdecl;
     function enable: Boolean; cdecl;
     function getAddress: JString; cdecl;
-    procedure closeProfileProxy(profile: Integer; BluetoothProfile: JObject); cdecl;
+    procedure closeProfileProxy(profile: Integer;
+      BluetoothProfile: JObject); cdecl;
     function getBondedDevices: JSet; cdecl;
     function getRemoteDevice(ID: JString): JBluetoothDevice; cdecl;
   end;
 
-  TJBluetoothAdapter = class(TJavaGenericImport<JBluetoothAdapterClass, JBluetoothAdapter>)
+  TJBluetoothAdapter = class(TJavaGenericImport<JBluetoothAdapterClass,
+    JBluetoothAdapter>)
   end;
 
   // Get local Bluetooth device name and check if it is enabled
@@ -92,7 +99,6 @@ function getBonded: TStringList;
 implementation
 
 {$IF defined(Android)}
-
 
 uses
   FMX.Helpers.Android;
